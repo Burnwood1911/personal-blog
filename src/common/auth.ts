@@ -54,6 +54,7 @@ export const nextAuthOptions: NextAuthOptions = {
 
       return Promise.resolve(token);
     },
+
     session: async ({ session, token }) => {
       if (token) {
         const id = token.id as string;
@@ -65,9 +66,9 @@ export const nextAuthOptions: NextAuthOptions = {
     },
   },
   jwt: {
-    secret: "jwtkey",
     maxAge: 15 * 24 * 30 * 60, // 15 days
   },
+  secret: "jwtkey",
   pages: {
     signIn: "/login",
     newUser: "/register",
