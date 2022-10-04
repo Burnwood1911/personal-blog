@@ -52,22 +52,22 @@ export default withTRPC<AppRouter>({
        */
       // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
 
-      // To use SSR properly you need to forward the client's headers to the server
-      // headers: () => {
-      //   if (ctx?.req) {
-      //     const headers = ctx?.req?.headers;
-      //     delete headers?.connection;
-      //     return {
-      //       ...headers,
-      //       "x-ssr": "1",
-      //     };
-      //   }
-      //   return {};
-      // }
+      //To use SSR properly you need to forward the client's headers to the server
+      headers: () => {
+        if (ctx?.req) {
+          const headers = ctx?.req?.headers;
+          delete headers?.connection;
+          return {
+            ...headers,
+            "x-ssr": "1",
+          };
+        }
+        return {};
+      },
     };
   },
   /**
    * @link https://trpc.io/docs/ssr
    */
-  ssr: false,
+  ssr: true,
 })(MyApp);
