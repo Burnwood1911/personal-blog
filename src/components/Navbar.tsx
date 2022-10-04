@@ -18,7 +18,7 @@ const Navbar: NextPage = () => {
 
   return (
     <div>
-      <div className="m-auto flex max-w-5xl items-center justify-between pt-2 pb-2">
+      <div className="m-auto ml-2 mr-2 flex max-w-5xl items-center justify-between pt-2 pb-2 sm:ml-0 sm:mr-0">
         <Link href="/" passHref>
           <img
             className="h-12 cursor-pointer object-cover"

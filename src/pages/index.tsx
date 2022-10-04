@@ -29,33 +29,37 @@ const Home: NextPage = () => {
     <div className="m-auto max-w-5xl">
       <Navbar />
 
-      <div className="mt-14 flex flex-col gap-40">
+      <div className="mt-14 flex flex-col gap-5 sm:gap-40">
         {data?.map((post, index) => (
           <div
             key={post.id}
-            className={`flex gap-10 ${
-              index % 2 === 0 ? "flex-row-reverse" : ""
+            className={`flex-col gap-5 sm:flex sm:flex-row sm:gap-10  ${
+              index % 2 === 0 ? "sm:flex-row-reverse" : ""
             }`}
           >
             <div className="relative w-full flex-1">
               <img
-                className="h-[350px] w-full object-cover"
+                className="h-[350px] w-full object-cover p-2 sm:p-0"
                 src={post.image}
                 alt=""
               />
-              <div className="absolute top-4 -left-4 -z-10 h-[350px] w-full bg-teal-300"></div>
+              <div className="absolute top-4 -left-4 -z-10 hidden h-[350px] w-full bg-teal-300 sm:block"></div>
             </div>
             <div className="flex-1 ">
               <div className="flex h-full flex-col items-start justify-between gap-4">
-                <h1 className="text-5xl font-bold">{post.title}</h1>
+                <h1 className="text-center font-bold sm:text-start sm:text-5xl">
+                  {post.title}
+                </h1>
                 <div
-                  className="h-36 overflow-clip text-justify text-lg"
+                  className="h-36 overflow-clip p-2 text-center text-lg sm:p-0 sm:text-justify"
                   dangerouslySetInnerHTML={{ __html: post.description ?? "" }}
                 ></div>
                 <Link href={`/posts/${post.id}`}>
-                  <button className=" border-none bg-teal-300 p-2 text-sm text-black">
-                    Read More
-                  </button>
+                  <div className="flex w-full justify-center md:block md:w-fit">
+                    <button className="border-none bg-teal-300 p-2 text-sm text-black">
+                      Read More
+                    </button>
+                  </div>
                 </Link>
               </div>
             </div>

@@ -35,14 +35,14 @@ const Post: NextPage = () => {
     );
   }
   return (
-    <div className="m-auto max-w-5xl">
+    <div className="m-auto w-screen sm:max-w-5xl">
       <Navbar />
 
-      <div className="mt-10 grid grid-cols-10 gap-10">
+      <div className="mt-8 sm:mt-10 sm:grid sm:grid-cols-10 sm:gap-10">
         {/* Left */}
-        <div className="col-span-7">
-          <div className="flex flex-col gap-10">
-            <div className=" flex flex-col gap-7">
+        <div className="sm:col-span-7">
+          <div className="flex flex-col gap-5 sm:gap-10">
+            <div className="flex flex-col gap-3 sm:gap-7">
               <img
                 className="h-80 w-full object-cover"
                 src={data?.image}
@@ -60,16 +60,18 @@ const Post: NextPage = () => {
                 </div>
               </div>
             </div>
-            <h1 className="text-5xl">{data?.title}</h1>
+            <h1 className="text-center sm:text-start sm:text-5xl">
+              {data?.title}
+            </h1>
             <div
-              className="ProseMirror text-justify leading-8"
+              className="ProseMirror p-2 text-justify leading-8 sm:p-0"
               dangerouslySetInnerHTML={{ __html: data?.body ?? "" }}
             ></div>
           </div>
         </div>
 
         {/* Right */}
-        <div className="col-span-3">
+        <div className="hidden sm:col-span-3 sm:block">
           <div className="flex flex-col gap-5">
             <h1 className="text-lg font-bold">Other posts you may like</h1>
             {others.data
