@@ -64,7 +64,7 @@ const Post: NextPage = () => {
               {data?.title}
             </h1>
             <div
-              className="ProseMirror p-2 text-justify leading-8 sm:p-0"
+              className="ProseMirror overflow-scroll p-2 text-justify leading-8 sm:p-0"
               dangerouslySetInnerHTML={{ __html: data?.body ?? "" }}
             ></div>
           </div>
