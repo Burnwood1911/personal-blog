@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import type { NextPage } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -26,6 +26,16 @@ const Write: NextPage = () => {
   const [desc, setDesc] = useState("");
   const router = useRouter();
   const { data } = useSession();
+  const [image, setImage] = useState("");
+
+  const fileToDataUri = (file: File) =>
+    new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        resolve(event.target?.result);
+      };
+      reader.readAsDataURL(file);
+    });
 
   const editor = useEditor({
     extensions: [
@@ -93,30 +103,19 @@ const Write: NextPage = () => {
 
   const handleSubmission = () => {
     if (selectedFile) {
-      const formData = new FormData();
       const stuff = editor?.getHTML();
-      formData.append("image", selectedFile, selectedFile.name);
-      fetch(
-        "https://api.imgbb.com/1/upload?key=0a5003d6ef01f7d2790b9298c80b62fd",
-        {
-          method: "POST",
-          body: formData,
-        }
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          const imageUrl = result.data.url as string;
-          mutation.mutate({
-            title: title,
-            authorId: data?.user.uid ?? "",
-            description: desc,
-            body: stuff ?? "kappa",
-            image: imageUrl,
-          });
-        })
-        .catch((error) => {
-          console.error("Error:", error);
+
+      fileToDataUri(selectedFile).then((dataUri) => {
+        setImage(dataUri as string);
+
+        mutation.mutate({
+          title: title,
+          authorId: data?.user.uid ?? "",
+          description: desc,
+          body: stuff ?? "",
+          image: image,
         });
+      });
     }
   };
 
