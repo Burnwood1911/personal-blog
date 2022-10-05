@@ -13,6 +13,7 @@
   "dependencies": {
     "@prisma/client": "^4.4.0",
     "@tiptap/extension-bullet-list": "^2.0.0-beta.199",
+    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.199",
     "@tiptap/extension-image": "^2.0.0-beta.199",
     "@tiptap/extension-link": "^2.0.0-beta.199",
     "@tiptap/extension-list-item": "^2.0.0-beta.199",
@@ -26,6 +27,7 @@
     "bcryptjs": "^2.4.3",
     "cookies-next": "^2.1.1",
     "jsonwebtoken": "^8.5.1",
+    "lowlight": "^2.7.0",
     "moment": "^2.29.4",
     "next": "12.3.1",
     "next-auth": "^4.12.2",

@@ -9,8 +9,10 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "../components/Menubar";
 import Link from "@tiptap/extension-link";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Image from "@tiptap/extension-image";
 import { useSession } from "next-auth/react";
+import { lowlight } from "lowlight/lib/core";
 
 import { requireAuth } from "../common/requireAuth";
 
@@ -31,6 +33,9 @@ const Write: NextPage = () => {
       Image,
       Link.configure({
         openOnClick: true,
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
       }),
     ],
     editorProps: {
