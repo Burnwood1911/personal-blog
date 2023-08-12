@@ -26,7 +26,6 @@ const Write: NextPage = () => {
   const [desc, setDesc] = useState("");
   const router = useRouter();
   const { data } = useSession();
-  const [image, setImage] = useState("");
 
   const fileToDataUri = (file: File) =>
     new Promise((resolve) => {
@@ -97,6 +96,8 @@ const Write: NextPage = () => {
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
+    console.log("reached")
+    console.log("selected file", fileList)
     if (!fileList) return;
     setSelectedFile(fileList[0]);
   };
@@ -106,14 +107,14 @@ const Write: NextPage = () => {
       const stuff = editor?.getHTML();
 
       fileToDataUri(selectedFile).then((dataUri) => {
-        setImage(dataUri as string);
+       
 
         mutation.mutate({
           title: title,
           authorId: data?.user.uid ?? "",
           description: desc,
           body: stuff ?? "",
-          image: image,
+          image: dataUri as string,
         });
       });
     }
