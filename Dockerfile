@@ -3,7 +3,7 @@ FROM node:16-alpine AS base
 # Set working directory
 WORKDIR /app
 # Copy project file
-COPY package.json .
+COPY . .
 
 # ---- Dependencies ----
 FROM base AS dependencies
@@ -14,7 +14,7 @@ RUN npm install
 # If you are using yarn, replace the above RUN command with:
 # RUN yarn install
 # Copy prisma schema if you're using Prisma
-COPY prisma ./prisma
+COPY . .
 # Install Prisma client, require DATABASE_URL environment variable for Prisma
 # If DATABASE_URL is known and fixed at build time, you can uncomment and set it here
 # ENV DATABASE_URL=your-database-connection-string
