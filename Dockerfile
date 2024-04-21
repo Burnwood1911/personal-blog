@@ -40,4 +40,5 @@ COPY --from=build /app/public ./public
 # Replace <Your_Database_URL> with the actual database URL or pass it at runtime
 ENV DATABASE_URL=postgres://burnwood:burnwood@hkokgoc:5432/burnwood
 # Start your app
+EXPOSE 3010
 CMD ["npm", "start"]
