@@ -8,7 +8,7 @@ COPY . .
 # ---- Dependencies ----
 FROM base AS dependencies
 # Install build dependencies
-RUN apk add --no-cache libc6-compat libstdc++ build-base python3 openssl-dev
+RUN apk add --no-cache libc6-compat libstdc++ build-base python3 openssl-dev libssl1.1
 # Install node modules
 RUN npm install
 # If you are using yarn, replace the above RUN command with:
